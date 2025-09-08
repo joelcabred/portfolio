@@ -28,7 +28,7 @@ export default function Nav() {
         <div className="max-w-6xl mx-auto h-14 px-4 flex items-center justify-between">
           {/* Brand */}
           <Link href="/" className="font-semibold tracking-tight">
-            joel.uy
+            joelcabrera.dev
           </Link>
 
           {/* Links */}
