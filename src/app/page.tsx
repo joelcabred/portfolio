@@ -1,103 +1,217 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState, useEffect } from "react";
+import { projects, type Project } from "@/data/projects"; // ajustá la ruta
+import { useRef } from "react";
+
+
+
+export default function HeroSection() {
+  const greetings = [
+    { text: "Hola, soy", flag: "🇺🇾" },
+    { text: "Hi, I am", flag: "🇬🇧" },
+    { text: "Salut, c’est", flag: "🇫🇷" },
+  ];
+
+  const [index, setIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const typingSpeed = 70;      // ms por letra
+  const pauseTime = 900;       // pausa al final/inicio
+
+const scrollerRef = useRef<HTMLDivElement>(null);
+
+const scrollByCards = (dir: "left" | "right") => {
+  const node = scrollerRef.current;
+  if (!node) return;
+  const delta = dir === "left" ? -400 : 400;
+  node.scrollBy({ left: delta, behavior: "smooth" });
+};
+
+const featured = React.useMemo<Project[]>(
+  () =>
+    [...projects]
+      .sort((a, b) => b.year - a.year) // más recientes primero
+      .slice(0, 3),                    // tomá 3
+  []
+);
+
+
+
+  useEffect(() => {
+    const current = greetings[index].text;
+    let timer: NodeJS.Timeout;
+
+    if (!isDeleting && displayText.length < current.length) {
+      timer = setTimeout(() => {
+        setDisplayText(current.slice(0, displayText.length + 1));
+      }, typingSpeed);
+    } else if (!isDeleting && displayText.length === current.length) {
+      timer = setTimeout(() => setIsDeleting(true), pauseTime);
+    } else if (isDeleting && displayText.length > 0) {
+      timer = setTimeout(() => {
+        setDisplayText(current.slice(0, displayText.length - 1));
+      }, typingSpeed / 1.8);
+    } else if (isDeleting && displayText.length === 0) {
+      timer = setTimeout(() => {
+        setIsDeleting(false);
+        setIndex((prev) => (prev + 1) % greetings.length);
+      }, pauseTime / 1.2);
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, index, greetings]);
+
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col min-h-screen px-8 space-y-8">
+      {/* Saludo rotativo */}
+      <h1 className="text-4xl font-bold flex items-center gap-2">
+        <span className="whitespace-pre">{displayText}</span>{" "}
+        <span className="text-blue-600">Joel Cabrera</span>{" "}
+        <span>{greetings[index].flag}</span>
+        {/* cursor */}
+        <span className="inline-block w-[2px] h-[1.2em] bg-current animate-pulse ml-1 align-middle" />
+      </h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+
+      {/* Layout con 2 columnas */}
+      <div className="py-10 px-5 rounded-xl bg-blue-100 grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full max-w-5xl">
+        {/* Foto */}
+        <div className="flex justify-center">
+          <img
+            src="/profile.png"
+            alt="Joel Cabrera"
+            className="w-48 h-48 rounded-full shadow-lg"
+          />
+        </div>
+
+        {/* Descripción */}
+        <div className="text-lg text-gray-700 space-y-4">
+          <p>
+            Estudiante de máster en <strong>Robótica (M2)</strong> en Sorbonne Université.
+            Intereses: IA, visión por computadora y sistemas inteligentes.
+          </p>
+          <p>
+            Master’s student in <strong>Robotics (M2)</strong> at Sorbonne Université.
+            Interests: AI, computer vision, and intelligent systems.
+          </p>
+          <p>
+            Étudiant en <strong>Master 2 Robotique</strong> à Sorbonne Université.
+            Intérêts : IA, vision par ordinateur et systèmes intelligents.
+          </p>
+        </div>
+      </div>
+
+      {/* Featured Projects */}
+      <section className=" w-full max-w-6xl">
+        <div className="mt-24 flex items-end justify-between mb-4">
+          <h2 className="text-2xl font-semibold">Featured projects</h2>
+          <a href="/projects" className="md:hidden text-sm underline">
+            See all projects →
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="relative">
+          {/* Botones prev/next (solo desktop) */}
+          <button
+            onClick={() => scrollByCards("left")}
+            className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 rounded-full border px-3 py-2 shadow bg-white/70 backdrop-blur hover:bg-white"
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => scrollByCards("right")}
+            className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 rounded-full border px-3 py-2 shadow bg-white/70 backdrop-blur hover:bg-white"
+            aria-label="Next"
+          >
+            ›
+          </button>
+
+          {/* Carrusel por scroll horizontal con snap */}
+          <div
+            ref={scrollerRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 pr-2 scroll-smooth
+                      [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {featured.map((p) => (
+              <a
+                key={p.slug}
+                href={`/projects/${p.slug}`}
+                className="min-w-[280px] md:min-w-[360px] snap-start rounded-2xl border 
+                          border-gray-200 dark:border-gray-700 
+                          shadow hover:shadow-md transition
+                          bg-white dark:bg-gray-900 
+                          text-gray-700 dark:text-gray-200
+                          overflow-hidden"
+              >
+                <img
+                  src={p.cover ?? "/covers/placeholder.jpg"}
+                  alt={p.title}
+                  className="h-40 w-full object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{p.title}</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                    {p.year} · {p.tags.slice(0, 3).join(" · ")}
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">{p.summary}</p>
+                  <div className="flex flex-wrap gap-2 mt-3 text-xs">
+                    {p.tags.slice(0, 3).map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-1 rounded-full border 
+                                  border-gray-300 dark:border-gray-600 
+                                  text-gray-700 dark:text-gray-200"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+        </div>
+
+        {/* Botón principal */}
+        <div className="hidden md:flex justify-center mt-4">
+          <a
+            href="/projects"
+            className="px-4 py-2 rounded-xl border shadow font-medium hover:shadow-md transition"
+          >
+            See all projects
+          </a>
+        </div>
+        
+      </section>
+      <br></br>
+      {/* Contact Me */}
+      <section className="mb-24 w-full border-t-2 border-gray-200 pt-10 mt-4 max-w-4xl mx-auto text-center space-y-6">
+        <h2 className="text-6xl font-semibold">Get in touch</h2>
+        <p className="dark:text-gray-300 text-gray-600">
+          Interested in collaborating or just want to say hi? Feel free to reach out, I’ll be happy to connect.
+        </p>
+        <div className="flex justify-center gap-4">
+          <a href="mailto:joel.cabred@gmail.com" className="px-5 py-2 rounded-xl border shadow font-medium hover:shadow-md transition">
+            Contact me
+          </a>
+          <a href="https://www.linkedin.com/in/ajoelc/?locale=en_US" target="_blank" rel="noopener noreferrer"
+            className="px-5 py-2 rounded-xl border shadow font-medium hover:shadow-md transition">
+            LinkedIn
+          </a>
+          <a href="https://github.com/joelcabred" target="_blank" rel="noopener noreferrer"
+            className="px-5 py-2 rounded-xl border shadow font-medium hover:shadow-md transition">
+            GitHub
+          </a>
+        </div>
+      </section>
+
+
+      
+
     </div>
   );
 }
