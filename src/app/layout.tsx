@@ -7,6 +7,9 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 export const metadata: Metadata = {
   title: "Joel Cabrera · Portfolio",
   description: "AI and image processing projects, notes, and contact info.",
+  icons:{
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
