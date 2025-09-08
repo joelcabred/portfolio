@@ -22,6 +22,9 @@ export default function Nav() {
     localStorage.setItem("theme", next ? "dark" : "light");
   };
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+
   return (
     <header className="container-page py-6">
       <nav className="sticky top-0 z-50 bg-white/70 dark:bg-gray-900/60 backdrop-blur border-b border-gray-200 dark:border-gray-800">
@@ -66,12 +69,44 @@ export default function Nav() {
 
           {/* Mobile menu*/}
           <button
-            className="sm:hidden h-9 w-9 rounded-md border border-gray-300 dark:border-gray-700"
-            aria-label="Open menu"
-          >
-            ≡
-          </button>
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Open menu"
+          aria-expanded={menuOpen}
+          className="sm:hidden h-9 w-9 rounded-md border border-gray-300 dark:border-gray-700
+                    flex items-center justify-center"
+        >
+          ≡
+        </button>
+
         </div>
+
+         {/* Mobile panel */}
+        {menuOpen && (
+          <div className="sm:hidden absolute top-full inset-x-0 z-50
+                          bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800
+                          shadow-lg">
+            <a
+              href="/projects"
+              className="block px-4 py-3 text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
+              onClick={() => setMenuOpen(false)}
+            >
+              Projects
+            </a>
+            <a
+              href="/about"
+              className="block px-4 py-3 text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
+              onClick={() => setMenuOpen(false)}
+            >
+              About
+            </a>
+            <button
+              onClick={() => { toggle(); setMenuOpen(false); }}
+              className="w-full text-left px-4 py-3 text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
+            >
+              {dark ? "Light mode" : "Dark mode"}
+            </button>
+          </div>
+        )}
       </nav>
     </header>
   );
