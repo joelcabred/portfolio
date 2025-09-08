@@ -136,9 +136,8 @@ const featured = React.useMemo<Project[]>(
                       [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {featured.map((p) => (
-              <a
+              <div
                 key={p.slug}
-                href={`/projects/${p.slug}`}
                 className="min-w-[280px] md:min-w-[360px] snap-start rounded-2xl border 
                           border-gray-200 dark:border-gray-700 
                           shadow hover:shadow-md transition
@@ -170,7 +169,7 @@ const featured = React.useMemo<Project[]>(
                     ))}
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
 
