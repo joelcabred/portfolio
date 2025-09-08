@@ -66,10 +66,10 @@ const featured = React.useMemo<Project[]>(
   return (
     <div className="flex flex-col min-h-screen px-8 space-y-8">
       {/* Saludo rotativo */}
-      <h1 className="text-4xl font-bold flex items-center gap-2">
+      <h1 className="text-[clamp(24px,7vw,40px)] leading-tight tracking-tight flex flex-wrap items-center gap-2">
         <span className="whitespace-pre">{displayText}</span>{" "}
-        <span className="text-blue-600">Joel Cabrera</span>{" "}
-        <span>{greetings[index].flag}</span>
+        <span className="text-blue-600 whitespace-nowrap">Joel Cabrera</span>
+        <span className="hidden sm:inline">{greetings[index].flag}</span>
         {/* cursor */}
         <span className="inline-block w-[2px] h-[1.2em] bg-current animate-pulse ml-1 align-middle" />
       </h1>
