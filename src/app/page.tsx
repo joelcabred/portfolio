@@ -89,16 +89,8 @@ const featured = React.useMemo<Project[]>(
         {/* Descripción */}
         <div className="text-lg text-gray-700 space-y-4">
           <p>
-            Estudiante de máster en <strong>Robótica (M2)</strong> en Sorbonne Université.
-            Intereses: IA, visión por computadora y sistemas inteligentes.
-          </p>
-          <p>
             Master’s student in <strong>Robotics (M2)</strong> at Sorbonne Université.
             Interests: AI, computer vision, and intelligent systems.
-          </p>
-          <p>
-            Étudiant en <strong>Master 2 Robotique</strong> à Sorbonne Université.
-            Intérêts : IA, vision par ordinateur et systèmes intelligents.
           </p>
         </div>
       </div>
