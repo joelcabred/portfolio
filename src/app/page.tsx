@@ -92,6 +92,16 @@ const featured = React.useMemo<Project[]>(
             Master’s student in <strong>Robotics (M2)</strong> at Sorbonne Université.
             Interests: AI, computer vision, and intelligent systems.
           </p>
+          <div className="hidden md:flex justify-center mt-4">
+            <a
+              href="/about"
+              className="px-4 py-2 rounded-xl border shadow font-medium 
+                        bg-blue-500 text-white hover:bg-blue-600 
+                        hover:shadow-md transition"
+            >
+              About me
+            </a>
+          </div>
         </div>
       </div>
 
