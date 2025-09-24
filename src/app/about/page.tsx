@@ -72,7 +72,7 @@ export default function AboutPage() {
         <h2 className="text-xl font-semibold mb-4">Find me online</h2>
         <div className="flex flex-wrap gap-3">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/joelcabred"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-2 rounded-lg border px-4 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
