@@ -1,3 +1,5 @@
+import { text } from "stream/consumers";
+
 export type Project = {
   slug: string;
   title: string;
@@ -80,3 +82,26 @@ export const projects: Project[] = [
 
 
 ];
+
+
+export function prepareDocs(projects){
+
+  const arr = []
+  for (let index = 0; index < projects.length; index++) {
+    const element = projects[index];
+    let str = 'Title: ' + element.title + '\n';
+    str+= 'Year: ' + element.year + '\n';
+    str+= 'Tags: ' + element.tags.join(', ') + '\n';
+    str+= 'Summary: ' + element.summary + '\n';
+    str+= 'Details: ' + element.details;
+
+
+    arr.push({
+      id: element.slug,
+      text: str,
+      meta: element
+    });
+
+  }
+  return arr;
+}
