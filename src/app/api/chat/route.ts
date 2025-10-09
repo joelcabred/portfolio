@@ -31,10 +31,9 @@ export async function POST(req: Request){
         return new Response(JSON.stringify({answer: res}))
 
 
-    }
-     catch (e: any) {
-        console.error('API /chat error:', e?.message ?? e);
-        return new Response(JSON.stringify({ error: e?.message ?? 'server error' }), { status: 500 });
-    }
+    } catch (e: unknown) {
+        const msg = e instanceof Error ? e.message : 'server error';
+    return new Response(JSON.stringify({ error: msg }), { status: 500 });
+  }
 }
 

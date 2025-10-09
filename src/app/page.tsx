@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import { projects, type Project } from "@/data/projects"; // ajustá la ruta
 import { useRef } from "react";
 
+import Image from 'next/image';
 
+const GREETINGS = ['Hola', 'Bonjour', 'Hello'];
 
 export default function HeroSection() {
   const greetings = [
@@ -79,7 +81,7 @@ const featured = React.useMemo<Project[]>(
       <div className="py-10 px-5 rounded-xl bg-blue-100 grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full max-w-5xl">
         {/* Foto */}
         <div className="flex justify-center">
-          <img
+          <Image
             src="/profile.png"
             alt="Joel Cabrera"
             className="w-48 h-48 rounded-full shadow-lg"
@@ -147,7 +149,7 @@ const featured = React.useMemo<Project[]>(
                           text-gray-700 dark:text-gray-200
                           overflow-hidden"
               >
-                <img
+                <Image
                   src={p.cover ?? "/covers/placeholder.jpg"}
                   alt={p.title}
                   className="h-40 w-full object-cover"

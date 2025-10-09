@@ -1,5 +1,3 @@
-import { text } from "stream/consumers";
-
 export type Project = {
   slug: string;
   title: string;
