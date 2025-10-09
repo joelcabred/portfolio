@@ -32,6 +32,11 @@ It showcases selected projects in **AI**, **Robotics**, and **Image Processing**
 
 To make my projects more interactive, I implemented a **chatbot** capable of answering questions about them. It uses the **[Mistral AI API](https://mistral.ai)**, which provides several models. In particular, I used the **[open-mistral-nemo](https://mistral.ai/news/mistral-nemo)** model, which is free and perfectly suitable for this use case.
 
+👉 You can test it : [joelcabrera.dev/chat](https://joelcabrera.dev/chat)
+
+![Demonstration of the chatbot](public/chatbot.gif)
+
+
 The chatbot was integrated into the existing **Next.js** portfolio project, so all the front-end infrastructure was already in place. A new **API endpoint** (`/api/chat`) was created to receive user messages and forward them to the Mistral model.
 
 What is actually sent to the API includes:
