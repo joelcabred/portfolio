@@ -41,6 +41,9 @@ export default function ChatPage() {
 
         <main className="mx-auto max-w-2xl p-6 space-y-4">
             <h1 className="text-2xl font-semibold tracking-tight">Chat</h1>
+                <p className="text-zinc-600 dark:text-zinc-400">
+                Ask me anything about my projects and experience.
+                </p>
 
             <div
             className="h-96 overflow-y-auto rounded-xl border bg-white/60 dark:bg-zinc-900/60 backdrop-blur p-4 space-y-3 border-zinc-200 dark:border-zinc-800"
