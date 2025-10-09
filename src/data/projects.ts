@@ -84,7 +84,7 @@ export const projects: Project[] = [
 ];
 
 
-export function prepareDocs(projects){
+export function prepareDocs(projects: Project[]){
 
   const arr = []
   for (let index = 0; index < projects.length; index++) {

@@ -1,4 +1,4 @@
-async function chat(messages){
+async function chat(messages : {role: 'system' | 'user' | 'assistant', content: string}[]){
     const url = process.env.LLM_API_BASE + '/v1/chat/completions'
 
     const res = await fetch(url,{ method: 'POST',
