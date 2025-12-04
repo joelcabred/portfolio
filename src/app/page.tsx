@@ -84,8 +84,11 @@ const featured = React.useMemo<Project[]>(
           <Image
             src="/profile.png"
             alt="Joel Cabrera"
+            width={192}       
+            height={192}
             className="w-48 h-48 rounded-full shadow-lg"
           />
+
         </div>
 
         {/* Descripción */}
@@ -152,6 +155,8 @@ const featured = React.useMemo<Project[]>(
                 <Image
                   src={p.cover ?? "/covers/placeholder.jpg"}
                   alt={p.title}
+                  width={600}
+                  height={240}
                   className="h-40 w-full object-cover"
                 />
                 <div className="p-4">

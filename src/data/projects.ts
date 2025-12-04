@@ -75,7 +75,20 @@ export const projects: Project[] = [
   report: "/reports/ima201.pdf",
   video: "https://youtu.be/_JsaTByxVHo",
   details: "Project developed for the course 'Introduction au traitement des images' (IMA201) at Télécom Paris. The goal was to reconstruct missing regions in microtexture images using Gaussian conditional simulation based on the ADSN model. The algorithm was implemented from scratch in Python using NumPy, SciPy, and OpenCV, with user interaction for region masking, FFT-based convolution optimization, and iterative conditional estimation via the Conjugate Gradient Descent (CGD) method. The implementation supports both grayscale and RGB textures, with experiments evaluating parameters such as boundary width (w), iteration count (kmax), and the impact of spectral centering and padding. Results demonstrated visually consistent texture inpainting and confirmed the efficiency of the ADSN-based approach compared to classical methods."
+},
+{
+  slug: "prosody-to-facial-au",
+  title: "Prosody-Driven Facial Expression Prediction",
+  year: 2025,
+  tags: ["Sorbonne Université", "Multimodal Learning", "Deep Learning"],
+  summary:
+    "Transformer model that predicts upper-face Action Units (AUs) directly from speech prosody (F0). Built a full multimodal pipeline with OpenSmile + OpenFace alignment and a multi-decoder architecture for AU generation.",
+  cover: "/covers/prosody-au.png",
+  report: "/reports/prosody-au.pdf",
+  details:
+    "Project developed for the course 'Apprentissage pour l’interaction humain/machine' at Sorbonne Université. The objective was to predict upper-face Action Units (AU01, AU02, AU04, AU05, AU06, AU07) solely from acoustic prosody. The pipeline included extracting F0 with OpenSmile, AU intensities with OpenFace, temporal alignment via timestamps, and quantization into discrete AU tokens. The model consisted of a 4-layer Transformer encoder and six independent decoders (one per AU), trained with cross-entropy and positional encoding. Quantitative evaluation showed strong temporal correlation between predictions and ground truth (e.g., AU02: PCC = 0.943, RMSE = 0.17, AHR = 0.978). Visual results confirmed the model's ability to track eyebrow raises and other micro-expressions from prosodic cues. This work demonstrates the feasibility of generating facial expressions for virtual agents using audio-only conditioning."
 }
+
 
 
 

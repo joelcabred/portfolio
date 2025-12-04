@@ -15,7 +15,7 @@ export default function AboutPage() {
         {/* Foto */}
         <div className="flex-shrink-0 flex justify-center md:justify-start">
           <Image
-            src="/profile.png" // poné tu foto en /public/profile.jpg
+            src="/profile.png" 
             alt="Joel Cabrera"
             width={180}
             height={180}
