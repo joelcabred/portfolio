@@ -87,6 +87,18 @@ export const projects: Project[] = [
   report: "/reports/prosody-au.pdf",
   details:
     "Project developed for the course 'Apprentissage pour l’interaction humain/machine' at Sorbonne Université. The objective was to predict upper-face Action Units (AU01, AU02, AU04, AU05, AU06, AU07) solely from acoustic prosody. The pipeline included extracting F0 with OpenSmile, AU intensities with OpenFace, temporal alignment via timestamps, and quantization into discrete AU tokens. The model consisted of a 4-layer Transformer encoder and six independent decoders (one per AU), trained with cross-entropy and positional encoding. Quantitative evaluation showed strong temporal correlation between predictions and ground truth (e.g., AU02: PCC = 0.943, RMSE = 0.17, AHR = 0.978). Visual results confirmed the model's ability to track eyebrow raises and other micro-expressions from prosodic cues. This work demonstrates the feasibility of generating facial expressions for virtual agents using audio-only conditioning."
+},
+{
+  slug: "proTAMER-prosody-rl",
+  title: "ProTAMER: Prosody-Based Human Feedback for RL",
+  year: 2026,
+  tags: ["Sorbonne Université", "Reinforcement Learning", "Social Robotics"],
+  summary:
+    "Reinforcement learning framework integrating human vocal feedback (prosody + speech) as a reward signal. Improves exploration and interaction quality in a simulated robot self-touch task.",
+  cover: "/covers/protamer.png",
+  report: "/reports/protamer.pdf",
+  details:
+    "Project developed for the Social Robotics course at Sorbonne Université. The objective was to incorporate human feedback into reinforcement learning using natural vocal signals. Built on top of DDPG and DeepTAMER, the system learns from both prosodic cues (emotion from voice tone) and linguistic feedback (Whisper + DistilBERT sentiment analysis). Prosodic feedback was modeled using a wav2vec2-based emotion recognition system, converted into a continuous reward signal via calibrated valence scores. The environment (MIMo / BabyBench) was adapted to a self-touch exploration task with reduced observation space and controlled action dimensions. Experimental results show that prosody-based feedback significantly improves learning efficiency, achieving faster interaction onset, higher contact rates, and more stable behavior compared to baseline RL and transcription-based feedback. This work highlights the importance of feedback modality in human-in-the-loop learning and demonstrates that prosody provides a natural, low-latency, and effective guidance signal for social robots."
 }
 
 
