@@ -37,6 +37,14 @@ export default function Nav() {
           {/* Links */}
           <div className="hidden sm:flex items-center gap-6">
             <Link
+              href="/publications"
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400
+                         underline-offset-4 hover:underline focus-visible:outline-none
+                         focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+            >
+              Publications
+            </Link>
+            <Link
               href="/projects"
               className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400
                          underline-offset-4 hover:underline focus-visible:outline-none
